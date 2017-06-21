@@ -1,0 +1,26 @@
+---
+- name: OpenSSH is installed
+  apt:
+    pkg: ssh
+    state: installed
+
+- name: .ssh directory exists
+  file:
+    dest: "{{ ssh_key_file | dirname }}"
+    mode: 0700
+    owner: "{{ username }}"
+    state: directory
+
+- name: SSH private key exists
+  copy:
+    content: "{{ ssh_private_key }}"
+    dest: "{{ ssh_key_file }}"
+    mode: 0600
+    owner: "{{ username }}"
+
+- name: SSH public key exists
+  copy:
+    content: "{{ ssh_public_key }}"
+    dest: "{{ ssh_key_file }}.pub"
+    mode: 0600
+    owner: "{{ username }}"

@@ -1,0 +1,15 @@
+---
+- name: Font directory exists in user home
+  become: true
+  become_user: '{{ username }}'
+  file:
+    path: "/home/{{ username }}/.fonts/"
+    state: directory
+
+- name: Fonts are installed
+  become: true
+  become_user: '{{ username }}'
+  copy:
+    src: ttfs/
+    dest: "/home/{{ username }}/.fonts/"
+  notify: Reload font cache

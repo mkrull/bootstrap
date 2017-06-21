@@ -1,0 +1,22 @@
+---
+- name: Emacs is installed
+  apt:
+    pkg: emacs
+    state: installed
+
+- name: Spacemacs is checked out
+  become: true
+  become_user: "{{ username }}"
+  git:
+    repo: https://github.com/syl20bnr/spacemacs.git
+    version: master
+    dest: "/home/{{ username }}/.emacs.d"
+    depth: 1
+
+- name: Spacemacs config is set up
+  become: true
+  become_user: "{{ username }}"
+  copy:
+    src: spacemacs
+    dest: "/home/{{ username }}/.spacemacs"
+    mode: 0644

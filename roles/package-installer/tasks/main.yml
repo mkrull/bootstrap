@@ -1,0 +1,23 @@
+---
+- name: Required apt keys are added
+  apt_key:
+    id: '{{ item["id"] }}'
+    keyserver: '{{ item["keyserver"] }}'
+  with_items: '{{ apt_keys }}'
+
+- name: Required apt keys from URLs are added
+  apt_key:
+    url: '{{ item }}'
+  with_items: '{{ apt_key_urls }}'
+
+- name: PPAs are added
+  apt_repository:
+    repo: '{{ item }}'
+  with_items: '{{ ppas }}'
+  notify: Update cache
+
+- name: Packages are installed
+  apt:
+    pkg: '{{ item }}'
+    state: installed
+  with_items: '{{ packages }}'

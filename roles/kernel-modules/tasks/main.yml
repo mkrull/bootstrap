@@ -1,0 +1,8 @@
+---
+- name: Modules are blacklisted
+  kernel_blacklist:
+    name: "{{ item }}"
+    state: present
+  with_items: "{{ module_blacklist }}"
+  notify:
+  - Rebuild initramfs

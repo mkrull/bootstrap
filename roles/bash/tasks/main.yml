@@ -1,0 +1,55 @@
+---
+- name: Bash is installed
+  apt:
+    pkg: bash
+    state: installed
+
+- name: Bash-It is checked out
+  become: true
+  become_user: "{{ username }}"
+  git:
+    repo: https://github.com/Bash-it/bash-it.git
+    version: master
+    dest: "/home/{{ username }}/.bash_it"
+    depth: 1
+
+- name: Bash config is set up
+  become: true
+  become_user: "{{ username }}"
+  template:
+    src: bashrc.j2
+    dest: "/home/{{ username }}/.bashrc"
+    mode: 0644
+
+- name: Plugins are activated
+  become: true
+  become_user: "{{ username }}"
+  file:
+    src: "/home/{{ username }}/.bash_it/plugins/available/{{ item }}.plugin.bash"
+    dest: "/home/{{ username }}/.bash_it/plugins/enabled/{{ item }}.plugin.bash"
+    state: link
+  with_items:
+  - alias-completion
+  - base
+  - python
+  - edit-mode-vi
+  - history
+  - pyenv
+  - git
+  - docker
+
+- name: Theme directory exists
+  become: true
+  become_user: "{{ username }}"
+  file:
+    dest: "/home/{{ username }}/.bash_it/themes/mak"
+    state: directory
+    mode: 0700
+
+- name: Theme is installed
+  become: true
+  become_user: "{{ username }}"
+  file:
+    src: mak.theme.bash
+    dest: "/home/{{ username }}/.bash_it/themes/mak/mak.theme.bash"
+    mode: 0700

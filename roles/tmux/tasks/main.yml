@@ -1,0 +1,13 @@
+---
+- name: Tmux is installed
+  apt:
+    pkg: tmux
+    state: installed
+
+- name: Tmux config is set up
+  become: true
+  become_user: "{{ username }}"
+  copy:
+    src: tmux.conf
+    dest: "/home/{{ username }}/.tmux.conf"
+    mode: 0644

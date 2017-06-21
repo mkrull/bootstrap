@@ -1,0 +1,40 @@
+---
+- name: Caps Lock is remapped to ctrl
+  become: true
+  become_user: '{{ username }}'
+  command: gsettings set org.gnome.desktop.input-sources xkb-options "['ctrl:nocaps']"
+
+- name: Tap to click is activated
+  become: true
+  become_user: '{{ username }}'
+  command: gsettings set org.gnome.desktop.peripherals.touchpad tap-to-click true
+
+- name: Gnome Shell extensions are enabled
+  become: true
+  become_user: '{{ username }}'
+  command: gsettings set org.gnome.shell enabled-extensions "{{ shell_extensions }}"
+
+- name: Gnome Shell theme is set
+  become: true
+  become_user: '{{ username }}'
+  command: gsettings set org.gnome.shell.extensions.user-theme name "{{ shell_theme }}"
+
+- name: Gtk theme is set
+  become: true
+  become_user: '{{ username }}'
+  command: gsettings set org.gnome.desktop.interface gtk-theme "{{ theme }}"
+
+- name: Icon theme is set
+  become: true
+  become_user: '{{ username }}'
+  command: gsettings set org.gnome.desktop.interface icon-theme "{{ icon_theme }}"
+
+- name: Cursor theme is set
+  become: true
+  become_user: '{{ username }}'
+  command: gsettings set org.gnome.desktop.interface gtk-theme "{{ cursor_theme }}"
+
+- name: Terminal profiles are imported
+  become: true
+  become_user: '{{ username }}'
+  shell: "dconf load /org/gnome/terminal/ < {{ role_path }}/files/profiles.ini"

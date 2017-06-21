@@ -1,0 +1,5 @@
+---
+- name: Reload font cache
+  become: true
+  become_user: '{{ username }}'
+  command: fc-cache -fv

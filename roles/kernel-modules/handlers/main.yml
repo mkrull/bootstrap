@@ -1,0 +1,3 @@
+---
+- name: Rebuild initramfs
+  shell: depmod -a && update-initramfs -u
