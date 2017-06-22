@@ -50,12 +50,17 @@ values."
      ;;racket
      yaml
      ;;themes-megapack
+     ;; avoid strange heading fonts and sizes
+     (theming :variables
+              theming-headings-inherit-from-default 'all
+              theming-headings-same-size 'all)
      ;; web stuff
      html
      typescript
      ;; ops
      ansible
      terraform
+     docker
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
