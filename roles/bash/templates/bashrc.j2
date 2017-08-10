@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Path to the bash it configuration
-export BASH_IT="/home/{{ username }}/.bash_it"
+export BASH_IT="${HOME}/.bash_it"
 
 # Lock and Load a custom theme file
 # location /.bash_it/themes/
@@ -51,13 +51,56 @@ export SCM_CHECK=true
 # Load Bash It
 source "$BASH_IT"/bash_it.sh
 
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
-source /home/{{ username }}/.pyenv/versions/3.5.3/bin/virtualenvwrapper.sh
-
-export PATH=$PATH:/home/{{ username }}/bin
-source '/home/{{ username }}/lib/azure-cli/az.completion'
+export PATH=$PATH:${HOME}/bin
 
 bind -m vi-insert "\C-l":clear-screen
 bind -m vi-command "\C-l":clear-screen
+
+# Language integrations
+# Golang
+if [ -d "${HOME}/gopath" ]; then
+    export GOPATH="${HOME}/gopath"
+    export PATH="${HOME}/gopath/bin:$PATH"
+fi
+
+# Rakudo Perl6
+if [ -f "${HOME}/.rakudobrew/bin/rakudobrew" ]; then
+    eval "$(${HOME}/.rakudobrew/bin/rakudobrew init -)"
+fi
+
+# Rust
+export PATH="${HOME}/.cargo/bin:$PATH"
+
+# Python
+if [ -d "${HOME}/.pyenv" ]; then
+    export PYENV_ROOT="${HOME}/.pyenv"
+    export PATH="$PYENV_ROOT/bin:$PATH"
+    eval "$(pyenv init -)"
+fi
+
+[ -f ${HOME}/.pyenv/versions/3.5.3/bin/virtualenvwrapper.sh ] && \
+    source ${HOME}/.pyenv/versions/3.5.3/bin/virtualenvwrapper.sh
+
+# Start emacs server
+if ! (ps aux |grep -qe '[e]macs .*spaceserver.*daemon'); then
+    emacs --eval '(setq server-name "spaceserver")' --daemon 2>/dev/null
+fi
+
+# Aliases
+alias defcon='mplayer http://ice1.somafm.com/defcon-256-mp3'
+# Start emacsclient in a new frame
+function space {
+    # Run emacsclient in background and dispatch the job from the current shell
+    # Do it in a subshell to supress output of bash job control in the original
+    # shell. As we disown anyway there is not much use of it.
+    (emacsclient -q -c --socket-name "spaceserver" -a \emacs $* &
+     disown)
+}
+# Start emacsclient in an existing frame
+function same-space {
+    # Run emacsclient in background and dispatch the job from the current shell
+    # Do it in a subshell to supress output of bash job control in the original
+    # shell. As we disown anyway there is not much use of it.
+    (emacsclient -q --socket-name "spaceserver" -a \emacs $* &
+     disown)
+}

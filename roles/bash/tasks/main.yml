@@ -21,6 +21,13 @@
     dest: "/home/{{ username }}/.bashrc"
     mode: 0644
 
+- name: Plugin directory exists
+  become: true
+  become_user: "{{ username }}"
+  file:
+    dest: "/home/{{ username }}/.bash_it/plugins/enabled"
+    state: directory
+
 - name: Plugins are activated
   become: true
   become_user: "{{ username }}"

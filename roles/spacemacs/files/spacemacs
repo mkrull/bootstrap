@@ -29,6 +29,8 @@ values."
                       auto-completion-enable-snippets-in-popup t
                       auto-completion-enable-sort-by-usage t)
      ;;better-defaults
+     elixir
+     rust
      emacs-lisp
      evil-commentary
      git

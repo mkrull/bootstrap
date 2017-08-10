@@ -4,10 +4,10 @@
     - vars/main.yml
   roles:
   - package-installer
-  - gsettings
   - kernel-modules
   - fonts
   - spacemacs
   - tmux
   - ssh
   - bash
+  - pyenv

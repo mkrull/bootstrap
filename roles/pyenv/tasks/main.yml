@@ -1,0 +1,39 @@
+---
+- name: pyenv is installed
+  become: true
+  become_user: "{{ username }}"
+  git:
+    repo: https://github.com/pyenv/pyenv.git
+    version: master
+    dest: "/home/{{ username }}/.pyenv"
+    depth: 1
+  register: pyenv
+
+- name: Install Python 3.5.3
+  become: true
+  become_user: "{{ username }}"
+  shell: 'source /home/{{ username }}/.bashrc && pyenv install 3.5.3'
+  args:
+    executable: /bin/bash
+  when: pyenv.changed
+
+- name: Activate Python 3.5.3
+  become: true
+  become_user: "{{ username }}"
+  shell: 'source /home/{{ username }}/.bashrc && pyenv global 3.5.3'
+  args:
+    executable: /bin/bash
+  when: pyenv.changed
+
+- name: Python modules are installed
+  become: true
+  become_user: "{{ username }}"
+  shell: 'source /home/{{ username }}/.bashrc && pip install {{ item }}'
+  args:
+    executable: /bin/bash
+  with_items:
+    - virtualenvwrapper
+    - pylint
+    - autoflake
+    - hy
+  when: pyenv.changed
