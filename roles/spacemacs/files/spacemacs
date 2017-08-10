@@ -34,7 +34,8 @@ values."
      emacs-lisp
      evil-commentary
      git
-     python
+     (python :variables
+             python-test-runner 'pytest)
      (haskell :variables
               haskell-process-type 'stack-ghci)
      ;; java
