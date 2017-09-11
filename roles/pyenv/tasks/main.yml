@@ -7,7 +7,10 @@
     version: master
     dest: "/home/{{ username }}/.pyenv"
     depth: 1
-  register: pyenv
+
+- name: check if Python 3.5.3 is installed
+  stat: path="/home/{{ username }}/.pyenv/versions/3.5.3"
+  register: python353
 
 - name: Install Python 3.5.3
   become: true
@@ -15,7 +18,8 @@
   shell: 'source /home/{{ username }}/.bashrc && pyenv install 3.5.3'
   args:
     executable: /bin/bash
-  when: pyenv.changed
+  register: pyenv
+  when: python353.stat.exists == False
 
 - name: Activate Python 3.5.3
   become: true

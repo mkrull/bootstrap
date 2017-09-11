@@ -71,6 +71,12 @@ if [ -d "${HOME}/.cargo/bin" ]; then
     export PATH="${HOME}/.cargo/bin:$PATH"
 fi
 
+# Plan9
+if [ -d "${HOME}/.local/plan9port/bin" ]; then
+    export PATH="$PATH:${HOME}/.local/plan9port/bin"
+    export PLAN9="${HOME}/.plan9port"
+fi
+
 # Python
 if [ -d "${HOME}/.pyenv" ]; then
     export PYENV_ROOT="${HOME}/.pyenv"
@@ -90,6 +96,7 @@ fi
 alias defcon='mplayer http://ice1.somafm.com/defcon-256-mp3'
 alias hell='mplayer http://85.25.43.55:80/hell.mp3'
 alias tkube='kubectl --namespace twyla'
+alias catc='pygmentize'
 
 # Start emacsclient in a new frame
 function space {

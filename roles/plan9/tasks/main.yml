@@ -1,0 +1,38 @@
+---
+- name: plan9port is checked out
+  become: true
+  become_user: "{{ username }}"
+  git:
+    repo: https://github.com/9fans/plan9port.git
+    version: master
+    dest: "/home/{{ username }}/.plan9port"
+    depth: 1
+    force: true
+
+- name: check if plan9port is installed
+  stat: path="/home/{{ username }}/.local/plan9port/bin/9"
+  register: plan9
+
+- name: plan9port is built
+  become: true
+  become_user: "{{ username }}"
+  shell: "/home/{{ username }}/.plan9port/INSTALL"
+  args:
+    chdir: "/home/{{ username }}/.plan9port/"
+    executable: /bin/bash
+  when: plan9.stat.exists == False
+
+- name: Plan9 directory exists
+  become: true
+  become_user: "{{ username }}"
+  file:
+    dest: "/home/{{ username }}/.local/plan9port/bin"
+    state: directory
+
+- name: plan9port is installed
+  become: true
+  become_user: "{{ username }}"
+  shell: "mv /home/{{ username }}/.plan9port/bin/* /home/{{ username }}/.local/plan9port/bin/"
+  args:
+    executable: /bin/bash
+  when: plan9.stat.exists == False
