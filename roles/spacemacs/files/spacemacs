@@ -35,7 +35,8 @@ values."
      evil-commentary
      git
      (python :variables
-             python-test-runner 'pytest)
+             python-test-runner 'pytest
+             python-shell-completion-native-enable nil)
      (haskell :variables
               haskell-process-type 'stack-ghci)
      ;; java
