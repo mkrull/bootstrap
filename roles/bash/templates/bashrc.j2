@@ -58,7 +58,8 @@ export PATH=${HOME}/.local/bin:${PATH}
 # Golang
 if [ -d "${HOME}/gopath" ]; then
     export GOPATH="${HOME}/gopath"
-    export PATH="${HOME}/gopath/bin:$PATH"
+    export GOROOT="${HOME}/goroot/go"
+    export PATH="${GOROOT}/bin:${GOPATH}/bin:$PATH"
 fi
 
 # Rakudo Perl6

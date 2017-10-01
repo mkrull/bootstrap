@@ -1,0 +1,106 @@
+---
+- name: Download golang
+  become: true
+  become_user: "{{ username }}"
+  get_url:
+    url: https://storage.googleapis.com/golang/go1.9.linux-amd64.tar.gz
+    dest: "/home/{{ username }}/Downloads/go1.9.linux-amd64.tar.gz"
+    mode: 0440
+    checksum: sha256:d70eadefce8e160638a9a6db97f7192d8463069ab33138893ad3bf31b0650a79
+
+- name: Goroot directory exists
+  become: true
+  become_user: "{{ username }}"
+  file:
+    dest: "/home/{{ username }}/goroot"
+    state: directory
+
+- name: Gopath directory exists
+  become: true
+  become_user: "{{ username }}"
+  file:
+    dest: "/home/{{ username }}/gopath"
+    state: directory
+
+- name: Unarchive golang
+  become: true
+  become_user: "{{ username }}"
+  unarchive:
+    src: "/home/{{ username }}/Downloads/go1.9.linux-amd64.tar.gz"
+    dest: "/home/{{ username }}/goroot"
+    remote_src: true
+
+- name: Check if gocode is installed
+  stat: path="/home/{{ username }}/gopath/bin/gocode"
+  register: gocode
+
+- name: Gocode is installed
+  become: true
+  become_user: "{{ username }}"
+  shell: '/home/{{ username }}/goroot/go/bin/go get -u -v github.com/nsf/gocode'
+  args:
+    executable: /bin/bash
+  environment:
+    GOROOT: "/home/{{ username }}/goroot/go"
+    GOPATH: "/home/{{ username }}/gopath"
+  when: gocode.stat.exists == False
+
+- name: Check if godef is installed
+  stat: path="/home/{{ username }}/gopath/bin/godef"
+  register: godef
+
+- name: Godef is installed
+  become: true
+  become_user: "{{ username }}"
+  shell: '/home/{{ username }}/goroot/go/bin/go get -u -v github.com/rogpeppe/godef'
+  args:
+    executable: /bin/bash
+  environment:
+    GOROOT: "/home/{{ username }}/goroot/go"
+    GOPATH: "/home/{{ username }}/gopath"
+  when: godef.stat.exists == False
+
+- name: Check if goimports is installed
+  stat: path="/home/{{ username }}/gopath/bin/goimports"
+  register: goimports
+
+- name: Goimports is installed
+  become: true
+  become_user: "{{ username }}"
+  shell: '/home/{{ username }}/goroot/go/bin/go get -u -v golang.org/x/tools/cmd/goimports'
+  args:
+    executable: /bin/bash
+  environment:
+    GOROOT: "/home/{{ username }}/goroot/go"
+    GOPATH: "/home/{{ username }}/gopath"
+  when: goimports.stat.exists == False
+
+- name: Check if gorename is installed
+  stat: path="/home/{{ username }}/gopath/bin/gorename"
+  register: gorename
+
+- name: Gorename is installed
+  become: true
+  become_user: "{{ username }}"
+  shell: '/home/{{ username }}/goroot/go/bin/go get -u -v golang.org/x/tools/cmd/gorename'
+  args:
+    executable: /bin/bash
+  environment:
+    GOROOT: "/home/{{ username }}/goroot/go"
+    GOPATH: "/home/{{ username }}/gopath"
+  when: gorename.stat.exists == False
+
+- name: Check if guru is installed
+  stat: path="/home/{{ username }}/gopath/bin/guru"
+  register: guru
+
+- name: Guru is installed
+  become: true
+  become_user: "{{ username }}"
+  shell: '/home/{{ username }}/goroot/go/bin/go get -u -v golang.org/x/tools/cmd/guru'
+  args:
+    executable: /bin/bash
+  environment:
+    GOROOT: "/home/{{ username }}/goroot/go"
+    GOPATH: "/home/{{ username }}/gopath"
+  when: guru.stat.exists == False
