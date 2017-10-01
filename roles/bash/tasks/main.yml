@@ -16,7 +16,7 @@
 - name: Bash config is set up
   become: true
   become_user: "{{ username }}"
-  file:
+  copy:
     src: bashrc
     dest: "/home/{{ username }}/.bashrc"
     mode: 0644
@@ -55,7 +55,7 @@
 - name: Theme is installed
   become: true
   become_user: "{{ username }}"
-  file:
+  copy:
     src: mak.theme.bash
     dest: "/home/{{ username }}/.bash_it/themes/mak/mak.theme.bash"
     mode: 0700
