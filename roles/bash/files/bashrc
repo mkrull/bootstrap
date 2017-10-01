@@ -76,6 +76,8 @@ fi
 if [ -d "${HOME}/.local/plan9port/bin" ]; then
     export PATH="$PATH:${HOME}/.local/plan9port/bin"
     export PLAN9="${HOME}/.plan9port"
+    pgrep fontsrv || fontsrv &
+    alias acme='acme -f /mnt/font/"Go Mono"/13a/font'
 fi
 
 # Python

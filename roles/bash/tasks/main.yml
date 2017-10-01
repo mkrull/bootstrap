@@ -16,8 +16,8 @@
 - name: Bash config is set up
   become: true
   become_user: "{{ username }}"
-  template:
-    src: bashrc.j2
+  file:
+    src: bashrc
     dest: "/home/{{ username }}/.bashrc"
     mode: 0644
 
