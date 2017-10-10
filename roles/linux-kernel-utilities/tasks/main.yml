@@ -1,0 +1,9 @@
+---
+- name: Kernel utilities repository is checked out
+  become: true
+  become_user: "{{ username }}"
+  git:
+    repo: https://github.com/mtompkins/linux-kernel-utilities.git
+    version: master
+    dest: "/home/{{ username }}/linux-kernel-utilities"
+    depth: 1

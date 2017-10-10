@@ -5,6 +5,7 @@
   roles:
   - package-installer
   - kernel-modules
+  - linux-kernel-utilities
   - fonts
   - spacemacs
   - tmux
