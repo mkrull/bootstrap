@@ -1,0 +1,23 @@
+---
+- name: Weechat config directory exists
+  become: true
+  become_user: "{{ username }}"
+  file:
+    dest: "/home/{{ username }}/.weechat"
+    state: directory
+
+- name: Weechat general config is set up
+  become: true
+  become_user: "{{ username }}"
+  copy:
+    src: weechat.conf
+    dest: "/home/{{ username }}/.weechat/weechat.conf"
+    mode: 0644
+
+- name: Weechat irc config is set up
+  become: true
+  become_user: "{{ username }}"
+  template:
+    src: irc.conf.j2
+    dest: "/home/{{ username }}/.weechat/irc.conf"
+    mode: 0644
