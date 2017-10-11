@@ -118,3 +118,9 @@ function same-space {
     (emacsclient -q --socket-name "spaceserver" -a \emacs $* &
      disown)
 }
+
+# Start emacsclient in a new terminal
+function tspace {
+    # Run emacsclient in the current terminal
+    (emacsclient -t -q -c --socket-name "spaceserver" -a \emacs $*)
+}
