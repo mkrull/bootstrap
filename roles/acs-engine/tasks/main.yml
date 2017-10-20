@@ -1,0 +1,26 @@
+---
+- name: Check if ACS engine is installed
+  stat: path="/home/{{ username }}/.local/bin/acs-engine"
+  register: acs_engine
+
+- name: ACS engine bin directory exists
+  become: true
+  become_user: "{{ username }}"
+  file:
+    path: "/home/{{ username }}/.local/bin"
+    state: directory
+
+- name: ACS engine is downloaded
+  become: true
+  become_user: "{{ username }}"
+  unarchive:
+    src: https://github.com/Azure/acs-engine/releases/download/v0.8.0/acs-engine-v0.8.0-linux-amd64.tar.gz
+    dest: /tmp/
+    remote_src: true
+  when: acs_engine.stat.exists == False
+
+- name: ACS engine is installed
+  become: true
+  become_user: "{{ username }}"
+  command: "mv /tmp/acs-engine-v0.8.0-linux-amd64/acs-engine /home/{{ username }}/.local/bin/"
+  when: acs_engine.stat.exists == False
