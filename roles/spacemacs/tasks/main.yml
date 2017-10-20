@@ -9,7 +9,7 @@
   become_user: "{{ username }}"
   git:
     repo: https://github.com/syl20bnr/spacemacs.git
-    version: master
+    version: develop
     dest: "/home/{{ username }}/.emacs.d"
     depth: 1
 
