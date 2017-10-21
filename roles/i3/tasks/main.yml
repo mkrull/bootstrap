@@ -9,6 +9,7 @@
     - compton
     - rofi
     - network-manager-gnome
+    - caffeine
 
 - name: Xdefaults are added
   become: true
@@ -17,6 +18,20 @@
     block: "{{ lookup('file', 'Xdefaults') }}"
     dest: "/home/{{ username }}/.Xdefaults"
     marker: "; I3"
+
+- name: Gtk 2 theme is set up
+  become: true
+  become_user: "{{ username }}"
+  copy:
+    src: gtkrc-2.0
+    dest: "/home/{{ username }}/.gtkrc-2.0"
+
+- name: Gtk 3 theme is set up
+  become: true
+  become_user: "{{ username }}"
+  copy:
+    src: gtk3-settings.ini
+    dest: "/home/{{ username }}/.config/gtk-3.0/settings.ini"
 
 - name: i3 config directory exists
   become: true

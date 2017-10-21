@@ -165,9 +165,12 @@ for_window [class=Pavucontrol] floating enable
 
 # start nm-applet
 exec nm-applet
+# start caffeine
+exec caffeine-indicator
 
 # rofi starter
 bindsym $mod+d exec "rofi -combi-modi window,drun -show combi -modi combi"
+bindsym $mod+x exec "i3lock -c 282828 -ef"
 
 # transparency
 exec compton --fading --fade-delta 12 --fade-in-step 0.15 --fade-out-step 0.15
