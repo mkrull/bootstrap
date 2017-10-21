@@ -4,6 +4,7 @@
     - vars/main.yml
   roles:
   - package-installer
+  - rxvt
   - kernel-modules
   - linux-kernel-utilities
   - fonts

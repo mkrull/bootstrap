@@ -1,0 +1,75 @@
+! Base16 Spacemacs
+! Scheme: Nasser Alshammari (https://github.com/nashamri/spacemacs-theme)
+
+URxvt*background:                     #1f2022
+URxvt*foreground:                     #a3a3a3
+URxvt*cursorColor:                    #a3a3a3
+
+URxvt*scrollColor:                    #a3a3a3
+URxvt*highlightColor:                 #444155
+URxvt*highlightTextColor:             #b8b8b8
+
+URxvt*color0:                         #1f2022
+URxvt*color1:                         #f2241f
+URxvt*color2:                         #67b11d
+URxvt*color3:                         #b1951d
+URxvt*color4:                         #4f97d7
+URxvt*color5:                         #a31db1
+URxvt*color6:                         #2d9574
+URxvt*color7:                         #a3a3a3
+URxvt*color8:                         #585858
+URxvt*color9:                         #f2241f
+URxvt*color10:                        #67b11d
+URxvt*color11:                        #b1951d
+URxvt*color12:                        #4f97d7
+URxvt*color13:                        #a31db1
+URxvt*color14:                        #2d9574
+URxvt*color15:                        #f8f8f8
+
+! 256 color space
+URxvt*color16:                        #ffa500
+URxvt*color17:                        #b03060
+URxvt*color18:                        #282828
+URxvt*color19:                        #444155
+URxvt*color20:                        #b8b8b8
+URxvt*color21:                        #e8e8e8
+
+! Fonts
+URxvt.allow_bold:                     false
+URxvt*font:                           xft:Go Mono:pixelsize=16
+URxvt*boldFont:                       xft:Go Mono:pixelsize=16
+
+! Scrollbar
+URxvt.scrollStyle:                    rxvt
+URxvt.scrollBar:                      false
+
+! Perl extensions
+URxvt.perl-ext-common:                default,matcher
+URxvt.matcher.button:                 1
+URxvt.urlLauncher:                    chromium
+
+! Cursor
+URxvt.cursorBlink:                    true
+URxvt.cursorColor:                    #657b83
+URxvt.cursorUnderline:                true
+
+! Pointer
+URxvt.pointerBlank:                   true
+
+URxvt*keysym.Home:                    \033[1~
+URxvt*keysym.End:                     \033[4~
+URxvt.depth:                          32
+URxvt.geometry:                       120x50
+URxvt.transparent:                    false
+URxvt.fading:                         0
+URxvt.loginShell:                     true
+URxvt.saveLines:                      5000
+URxvt.internalBorder:                 3
+URxvt.lineSpace:                      1
+
+! Xft
+Xft.dpi:                              96
+Xft.antialias:                        true
+Xft.rgba:                             rgb
+Xft.hinting:                          true
+Xft.hintstyle:                        hintslight
