@@ -1,0 +1,47 @@
+---
+- name: i3 and its dependencies are installed
+  apt:
+    name: "{{ item }}"
+  with_items:
+    - i3
+    - feh
+    - x11-xserver-utils
+    - compton
+    - rofi
+    - network-manager-gnome
+
+- name: Xdefaults are added
+  become: true
+  become_user: "{{ username }}"
+  blockinfile:
+    block: "{{ lookup('file', 'Xdefaults') }}"
+    dest: "/home/{{ username }}/.Xdefaults"
+    marker: "; I3"
+
+- name: i3 config directory exists
+  become: true
+  become_user: "{{ username }}"
+  file:
+    path: "/home/{{ username }}/.config/i3"
+    state: directory
+
+- name: i3 config is set up
+  become: true
+  become_user: "{{ username }}"
+  copy:
+    src: config
+    dest: "/home/{{ username }}/.config/i3/config"
+
+- name: i3status config is set up
+  become: true
+  become_user: "{{ username }}"
+  copy:
+    src: i3status.conf
+    dest: "/home/{{ username }}/.i3status.conf"
+
+- name: i3 wallpaper is installed
+  become: true
+  become_user: "{{ username }}"
+  copy:
+    src: wallpaper.jpg
+    dest: "/home/{{ username }}/.config/i3/wallpaper.jpg"

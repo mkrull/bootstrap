@@ -4,6 +4,9 @@
     name: rxvt-unicode-256color
 
 - name: Xdefaults are added
+  become: true
+  become_user: "{{ username }}"
   blockinfile:
     block: "{{ lookup('file', 'Xdefaults') }}"
     dest: "/home/{{ username }}/.Xdefaults"
+    marker: "; URXVT "
