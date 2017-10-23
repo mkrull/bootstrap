@@ -9,4 +9,4 @@
   blockinfile:
     block: "{{ lookup('file', 'Xdefaults') }}"
     dest: "/home/{{ username }}/.Xdefaults"
-    marker: "; URXVT "
+    marker: "; {mark} URXVT "

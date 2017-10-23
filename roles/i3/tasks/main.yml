@@ -18,7 +18,7 @@
   blockinfile:
     block: "{{ lookup('file', 'Xdefaults') }}"
     dest: "/home/{{ username }}/.Xdefaults"
-    marker: "; I3"
+    marker: "; {mark} I3"
 
 - name: Gtk 2 theme is set up
   become: true
