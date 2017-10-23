@@ -167,6 +167,8 @@ for_window [class=Pavucontrol] floating enable
 exec nm-applet
 # start caffeine
 exec caffeine-indicator
+# start audio system tray
+exec pasystray
 
 # rofi starter
 bindsym $mod+d exec "rofi -combi-modi window,drun -show combi -modi combi"
