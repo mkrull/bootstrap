@@ -120,7 +120,7 @@ function same-space {
 }
 
 # Start emacsclient in a new terminal
-function tspace {
+function tsm {
     # Run emacsclient in the current terminal
     (emacsclient -t -q -c --socket-name "spaceserver" -a \emacs $*)
 }
