@@ -124,3 +124,25 @@ function tsm {
     # Run emacsclient in the current terminal
     (emacsclient -t -q -c --socket-name "spaceserver" -a \emacs $*)
 }
+
+# Switch kubernetes configs
+function kubeon {
+    if [ "${1}" ]; then
+        local config_file="${1}"
+    else
+        echo "Usage: kubeon <config|config_file>"
+        return 1
+    fi
+
+    if [ ! -f "${1}" ]; then
+        config_file="${HOME}/.kube/${1}-config"
+    fi
+
+    if [ ! -f "${config_file}" ]; then
+        echo "No config file found. Tried ${1} and ${config_file}"
+        return 1
+    fi
+
+    export KUBECONFIG="${HOME}/.kube/${1}-config"
+    export KUBEON_PROMPT="${1}"
+}
