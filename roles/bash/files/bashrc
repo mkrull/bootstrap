@@ -90,16 +90,19 @@ fi
 [ -f ${HOME}/.pyenv/versions/3.5.3/bin/virtualenvwrapper.sh ] && \
     source ${HOME}/.pyenv/versions/3.5.3/bin/virtualenvwrapper.sh
 
-# Start emacs server
-if ! (ps aux |grep -qe '[e]macs .*spaceserver.*daemon'); then
-    emacs --eval '(setq server-name "spaceserver")' --daemon 2>/dev/null
-fi
-
 # Aliases
 alias defcon='mplayer http://ice1.somafm.com/defcon-256-mp3'
 alias hell='mplayer http://85.25.43.55:80/hell.mp3'
 alias tkube='kubectl --namespace twyla'
 alias catc='pygmentize'
+
+# Start emacs server
+function start-space {
+    if ! (ps aux |grep -qe '[e]macs .*spaceserver.*daemon'); then
+        emacs --eval '(setq server-name "spaceserver")' --daemon 2>/dev/null
+    fi
+}
+start-space
 
 # Start emacsclient in a new frame
 function space {
@@ -145,4 +148,9 @@ function kubeon {
 
     export KUBECONFIG="${HOME}/.kube/${1}-config"
     export KUBEON_PROMPT="${1}"
+}
+
+function kubeoff {
+    unset KUBECONFIG
+    unset KUBEON_PROMPT
 }
