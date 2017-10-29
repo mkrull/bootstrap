@@ -1,0 +1,40 @@
+apt_key_urls:
+- https://dl-ssl.google.com/linux/linux_signing_key.pub
+- https://packages.cloud.google.com/apt/doc/apt-key.gpg
+- http://repo.vivaldi.com/archive/linux_signing_key.pub
+apt_keys:
+- { id: B05498B7, keyserver: keyserver.ubuntu.com }
+- { id: 7EA0A9C3F273FCD8, keyserver: keyserver.ubuntu.com }
+- { id: 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF, keyserver: keyserver.ubuntu.com }
+ppas:
+- ppa:snwh/pulp
+- deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main
+- "deb http://packages.cloud.google.com/apt cloud-sdk-{{ ansible_distribution_release }} main"
+- "deb http://repo.steampowered.com/steam/ precise steam"
+- deb [arch=amd64] https://download.docker.com/linux/ubuntu xenial stable
+- deb http://repo.vivaldi.com/archive/deb/ stable main
+- deb http://download.mono-project.com/repo/debian wheezy main
+packages:
+- git
+- paper-icon-theme
+- paper-gtk-theme
+- google-chrome-stable
+- vivaldi-stable
+- google-cloud-sdk
+- kubectl
+- geary
+- curl
+- jq
+- docker-ce
+- mplayer
+- python-pygments
+- weechat
+- steam
+# C# development
+- mono-complete
+- nuget
+# Libraries required to compile Python
+- libssl-dev
+- libbz2-dev
+- libsqlite-dev
+- libreadline-dev

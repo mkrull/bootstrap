@@ -1,8 +1,9 @@
 ---
-- name: Bash is installed
-  apt:
-    pkg: bash
-    state: installed
+- include: ubuntu.yml
+  when: ansible_os_family == 'Ubuntu'
+
+- include: arch.yml
+  when: ansible_os_family == 'Archlinux'
 
 - name: Bash-It is checked out
   become: true

@@ -1,0 +1,10 @@
+---
+- name: Compile time dependencies installed
+  apt:
+    pkg: "{{ item }}"
+    state: installed
+  with_items:
+  - libx11-dev
+  - libxt-dev
+  - libfontconfig1-dev
+  - libxext-dev

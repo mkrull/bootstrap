@@ -1,0 +1,6 @@
+arch_packages:
+- git
+- vivaldi
+- jq
+- curl
+- docker

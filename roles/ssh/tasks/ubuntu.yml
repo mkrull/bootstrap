@@ -1,0 +1,5 @@
+---
+- name: OpenSSH is installed
+  apt:
+    pkg: ssh
+    state: installed

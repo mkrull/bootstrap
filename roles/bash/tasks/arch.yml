@@ -1,0 +1,6 @@
+---
+- name: Bash is installed
+  pacman:
+    pkg: bash
+    state: installed
+

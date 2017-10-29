@@ -1,4 +1,10 @@
 ---
+- include: ubuntu.yml
+  when: ansible_os_family == 'Ubuntu'
+
+- include: arch.yml
+  when: ansible_os_family == 'Archlinux'
+
 - name: plan9port is checked out
   become: true
   become_user: "{{ username }}"

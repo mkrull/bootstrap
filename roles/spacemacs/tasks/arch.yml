@@ -1,0 +1,5 @@
+---
+- name: Emacs is installed
+  pacman:
+    pkg: emacs
+    state: installed

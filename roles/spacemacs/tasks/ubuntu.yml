@@ -1,0 +1,6 @@
+---
+- name: Emacs is installed
+  apt:
+    pkg: emacs
+    state: installed
+

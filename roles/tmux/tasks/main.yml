@@ -1,8 +1,9 @@
 ---
-- name: Tmux is installed
-  apt:
-    pkg: tmux
-    state: installed
+- include: ubuntu.yml
+  when: ansible_os_family == 'Ubuntu'
+
+- include: arch.yml
+  when: ansible_os_family == 'Archlinux'
 
 - name: Tmux config is set up
   become: true

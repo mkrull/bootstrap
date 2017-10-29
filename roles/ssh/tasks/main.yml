@@ -1,8 +1,9 @@
 ---
-- name: OpenSSH is installed
-  apt:
-    pkg: ssh
-    state: installed
+- include: ubuntu.yml
+  when: ansible_os_family == 'Ubuntu'
+
+- include: arch.yml
+  when: ansible_os_family == 'Archlinux'
 
 - name: .ssh directory exists
   file:

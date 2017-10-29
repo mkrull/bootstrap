@@ -2,21 +2,21 @@
 - hosts: all
   vars_files:
     - vars/main.yml
-    - vars/ubuntu.yml
+    - vars/arch.yml
     - vars/secrets.yml
   roles:
   - package-installer
-  - kernel-modules
-  - linux-kernel-utilities
+  #- kernel-modules
+  #- linux-kernel-utilities
   - fonts
   - spacemacs
   - tmux
-  - weechat
+  #- weechat
   - ssh
   - bash
-  - rxvt
+  #- rxvt
   - i3
   - golang
-  - pyenv
-  - plan9
-  - acs-engine
+  #- pyenv
+  #- plan9
+  #- acs-engine

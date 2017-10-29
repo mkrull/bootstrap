@@ -1,0 +1,5 @@
+---
+- name: OpenSSH is installed
+  pacman:
+    pkg: openssh
+    state: installed

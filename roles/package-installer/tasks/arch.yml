@@ -1,0 +1,6 @@
+---
+- name: Packages are installed
+  pacman:
+    pkg: '{{ item }}'
+    state: installed
+  with_items: '{{ arch_packages }}'

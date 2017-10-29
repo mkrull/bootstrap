@@ -1,0 +1,14 @@
+---
+- name: i3 and its dependencies are installed
+  pacman:
+    name: "{{ item }}"
+  with_items:
+    - i3
+    - feh
+    - x11-xserver-utils
+    - compton
+    - rofi
+    - network-manager-gnome
+    - caffeine
+    - pasystray
+

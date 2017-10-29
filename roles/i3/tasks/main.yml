@@ -1,16 +1,14 @@
 ---
-- name: i3 and its dependencies are installed
-  apt:
-    name: "{{ item }}"
-  with_items:
-    - i3
-    - feh
-    - x11-xserver-utils
-    - compton
-    - rofi
-    - network-manager-gnome
-    - caffeine
-    - pasystray
+- include: ubuntu.yml
+  when: ansible_os_family == 'Ubuntu'
+
+- include: arch.yml
+  when: ansible_os_family == 'ArchLinux'
+
+- name: Xdefaults file exists
+  command: "touch /home/{{ username }}/.Xdefaults"
+  args:
+    creates: "/home/{{ username }}/.Xdefaults"
 
 - name: Xdefaults are added
   become: true

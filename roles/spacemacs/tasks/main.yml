@@ -1,8 +1,9 @@
 ---
-- name: Emacs is installed
-  apt:
-    pkg: emacs
-    state: installed
+- include: ubuntu.yml
+  when: ansible_os_family == 'Ubuntu'
+
+- include: arch.yml
+  when: ansible_os_family == 'Archlinux'
 
 - name: Spacemacs is checked out
   become: true

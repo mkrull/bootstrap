@@ -1,0 +1,5 @@
+---
+- name: Bash is installed
+  apt:
+    pkg: bash
+    state: installed

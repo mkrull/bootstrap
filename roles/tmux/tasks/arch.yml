@@ -1,0 +1,5 @@
+---
+- name: Tmux is installed
+  pacman:
+    pkg: tmux
+    state: installed
