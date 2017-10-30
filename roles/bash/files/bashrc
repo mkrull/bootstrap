@@ -104,6 +104,12 @@ function start-space {
 }
 start-space
 
+# Restart emacs server
+function restart-space {
+    killall emacs
+    start-space
+}
+
 # Start emacsclient in a new frame
 function space {
     # Run emacsclient in background and dispatch the job from the current shell
