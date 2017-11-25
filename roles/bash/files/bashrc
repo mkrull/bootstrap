@@ -90,6 +90,13 @@ fi
 [ -f ${HOME}/.pyenv/versions/3.5.3/bin/virtualenvwrapper.sh ] && \
     source ${HOME}/.pyenv/versions/3.5.3/bin/virtualenvwrapper.sh
 
+function pycov {
+    local package=$1
+    local dir=$2
+
+    pytest --cov-report=term-missing --disable-pytest-warnings --cov=${package} ${dir}
+}
+
 # Aliases
 alias defcon='mplayer http://ice1.somafm.com/defcon-256-mp3'
 alias hell='mplayer http://85.25.43.55:80/hell.mp3'
