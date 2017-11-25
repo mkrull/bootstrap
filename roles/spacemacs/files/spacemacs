@@ -29,6 +29,7 @@ values."
                       auto-completion-enable-snippets-in-popup t
                       auto-completion-enable-sort-by-usage t)
      ;;better-defaults
+     erlang
      elixir
      rust
      emacs-lisp
@@ -138,8 +139,8 @@ values."
    ;;                             :weight normal
    ;;                             :width normal
    ;;                             :powerline-scale 1.1)
-   dotspacemacs-default-font '("Go Mono"
-                               :size 14
+   dotspacemacs-default-font '("Knack Nerd Font Mono"
+                               :size 16
                                :weight normal
                                :width normal
                                :powerline-scale 1.1)
