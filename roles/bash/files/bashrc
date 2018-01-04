@@ -209,9 +209,17 @@ function kubeon {
 
     export KUBECONFIG="${HOME}/.kube/${1}-config"
     export KUBEON_PROMPT="${1}"
+    export KUBE_MASTER=$(kubectl config view|grep server:|cut -d/ -f3)
 }
 
 function kubeoff {
     unset KUBECONFIG
     unset KUBEON_PROMPT
+    unset KUBE_MASTER
+}
+
+function kubemaster {
+    local user="$1"
+    [ "${user}" ] || user=admini
+    ssh ${user}@${KUBE_MASTER}
 }
