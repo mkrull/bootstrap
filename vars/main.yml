@@ -28,7 +28,7 @@ packages:
 - weechat
 - steam
 # encryption, etc
-- encfs
+- cryfs
 - keepassx
 # C# development
 - mono-complete
