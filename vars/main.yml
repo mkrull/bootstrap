@@ -2,7 +2,6 @@ username: "{{ lookup('env', 'USER') }}"
 apt_key_urls:
 - https://dl-ssl.google.com/linux/linux_signing_key.pub
 - https://packages.cloud.google.com/apt/doc/apt-key.gpg
-- http://repo.vivaldi.com/archive/linux_signing_key.pub
 apt_keys:
 - { id: B05498B7, keyserver: keyserver.ubuntu.com }
 - { id: 7EA0A9C3F273FCD8, keyserver: keyserver.ubuntu.com }
@@ -12,24 +11,25 @@ ppas:
 - deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main
 - "deb http://packages.cloud.google.com/apt cloud-sdk-{{ ansible_distribution_release }} main"
 - "deb http://repo.steampowered.com/steam/ precise steam"
-- deb [arch=amd64] https://download.docker.com/linux/ubuntu xenial stable
-- deb http://repo.vivaldi.com/archive/deb/ stable main
 - deb http://download.mono-project.com/repo/debian wheezy main
 packages:
 - git
+- arc-theme
 - paper-icon-theme
-- paper-gtk-theme
 - google-chrome-stable
-- vivaldi-stable
+- firefox
 - google-cloud-sdk
 - kubectl
 - curl
 - jq
-- docker-ce
+- docker.io
 - mplayer
 - python-pygments
 - weechat
 - steam
+# encryption, etc
+- encfs
+- keepassx
 # C# development
 - mono-complete
 - nuget
